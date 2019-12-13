@@ -14,7 +14,7 @@ jobs:
       - name: Generate release tag name
         id: tag
         run: |
-          echo ::set-output name=tag::deploy/$(date +%Y-%m-%dT%H-%M-%S%z)
+          echo ::set-output name=tag::deploy/$(TZ=Europe/Prague date +%Y-%m-%dT%H-%M-%S%z)
 
       - name: Create Release
         id: create_release
