@@ -13,8 +13,7 @@ jobs:
 
       - name: Let's set an environment variable!
         run: |
-          TAG="deploy/$(date +%Y-%m-%dT%H-%M-%S%z)"
-          echo '::set-env name=TAG::$TAG'
+          echo ::set-env name=TAG::deploy/$(date +%Y-%m-%dT%H-%M-%S%z)
 
       - name: Create Release
         id: create_release
