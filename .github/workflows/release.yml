@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Let's set an environment variable!
+        run: |
+          TAG="deploy/$(date +%Y-%m-%dT%H-%M-%S%z)"
+          echo '::set-env name=TAG::$TAG'
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: $TAG
+          release_name: Release $TAG
+          draft: false
+          prerelease: false
+
